@@ -7,17 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		FA9F0A3325B7F51F00E9AB85 /* programmers.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9F0A3225B7F51F00E9AB85 /* programmers.swift */; };
 		FAE46EB025AE99E1006A5BF6 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE46EAF25AE99E1006A5BF6 /* main.swift */; };
-		FAE46EBB25AE9B8E006A5BF6 /* BaekJoon1000.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE46EBA25AE9B8E006A5BF6 /* BaekJoon1000.swift */; };
-		FAE46EBF25AE9BC7006A5BF6 /* BaekJoon1009.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE46EBE25AE9BC7006A5BF6 /* BaekJoon1009.swift */; };
-		FAE46EC225AE9BD4006A5BF6 /* BaekJoon1052.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE46EC125AE9BD4006A5BF6 /* BaekJoon1052.swift */; };
-		FAE46EC525AE9BF7006A5BF6 /* BaekJoon1076.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE46EC425AE9BF7006A5BF6 /* BaekJoon1076.swift */; };
-		FAE46EC825AE9C06006A5BF6 /* BaekJoon10757.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE46EC725AE9C06006A5BF6 /* BaekJoon10757.swift */; };
-		FAE46ECB25AE9C63006A5BF6 /* Leet1.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE46ECA25AE9C63006A5BF6 /* Leet1.swift */; };
-		FAE46ED025AEB918006A5BF6 /* Leet7.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE46ECF25AEB918006A5BF6 /* Leet7.swift */; };
-		FAE46ED325AEC047006A5BF6 /* Leet83.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE46ED225AEC047006A5BF6 /* Leet83.swift */; };
-		FAE46ED925AED727006A5BF6 /* Leet9.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE46ED825AED727006A5BF6 /* Leet9.swift */; };
-		FAE46EDC25AEE5D5006A5BF6 /* Leet14.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE46EDB25AEE5D5006A5BF6 /* Leet14.swift */; };
+		FAE46EBB25AE9B8E006A5BF6 /* BaekJoon.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE46EBA25AE9B8E006A5BF6 /* BaekJoon.swift */; };
+		FAE46ECB25AE9C63006A5BF6 /* Leet.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE46ECA25AE9C63006A5BF6 /* Leet.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -33,18 +26,11 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		FA9F0A3225B7F51F00E9AB85 /* programmers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = programmers.swift; sourceTree = "<group>"; };
 		FAE46EAC25AE99E1006A5BF6 /* Algorithm_By_Baekjoon_LeetCode */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Algorithm_By_Baekjoon_LeetCode; sourceTree = BUILT_PRODUCTS_DIR; };
 		FAE46EAF25AE99E1006A5BF6 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
-		FAE46EBA25AE9B8E006A5BF6 /* BaekJoon1000.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaekJoon1000.swift; sourceTree = "<group>"; };
-		FAE46EBE25AE9BC7006A5BF6 /* BaekJoon1009.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaekJoon1009.swift; sourceTree = "<group>"; };
-		FAE46EC125AE9BD4006A5BF6 /* BaekJoon1052.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaekJoon1052.swift; sourceTree = "<group>"; };
-		FAE46EC425AE9BF7006A5BF6 /* BaekJoon1076.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaekJoon1076.swift; sourceTree = "<group>"; };
-		FAE46EC725AE9C06006A5BF6 /* BaekJoon10757.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaekJoon10757.swift; sourceTree = "<group>"; };
-		FAE46ECA25AE9C63006A5BF6 /* Leet1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Leet1.swift; sourceTree = "<group>"; };
-		FAE46ECF25AEB918006A5BF6 /* Leet7.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Leet7.swift; sourceTree = "<group>"; };
-		FAE46ED225AEC047006A5BF6 /* Leet83.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Leet83.swift; sourceTree = "<group>"; };
-		FAE46ED825AED727006A5BF6 /* Leet9.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Leet9.swift; sourceTree = "<group>"; };
-		FAE46EDB25AEE5D5006A5BF6 /* Leet14.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Leet14.swift; sourceTree = "<group>"; };
+		FAE46EBA25AE9B8E006A5BF6 /* BaekJoon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaekJoon.swift; sourceTree = "<group>"; };
+		FAE46ECA25AE9C63006A5BF6 /* Leet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Leet.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,10 +44,19 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		FA9F0A2D25B7D01F00E9AB85 /* Programmers */ = {
+			isa = PBXGroup;
+			children = (
+				FA9F0A3225B7F51F00E9AB85 /* programmers.swift */,
+			);
+			path = Programmers;
+			sourceTree = "<group>";
+		};
 		FAE46EA325AE99E1006A5BF6 = {
 			isa = PBXGroup;
 			children = (
 				FAE46EAF25AE99E1006A5BF6 /* main.swift */,
+				FA9F0A2D25B7D01F00E9AB85 /* Programmers */,
 				FAE46EB825AE9AB0006A5BF6 /* LeetCode */,
 				FAE46EAE25AE99E1006A5BF6 /* BaekJoon */,
 				FAE46EAD25AE99E1006A5BF6 /* Products */,
@@ -79,11 +74,7 @@
 		FAE46EAE25AE99E1006A5BF6 /* BaekJoon */ = {
 			isa = PBXGroup;
 			children = (
-				FAE46EBA25AE9B8E006A5BF6 /* BaekJoon1000.swift */,
-				FAE46EBE25AE9BC7006A5BF6 /* BaekJoon1009.swift */,
-				FAE46EC125AE9BD4006A5BF6 /* BaekJoon1052.swift */,
-				FAE46EC425AE9BF7006A5BF6 /* BaekJoon1076.swift */,
-				FAE46EC725AE9C06006A5BF6 /* BaekJoon10757.swift */,
+				FAE46EBA25AE9B8E006A5BF6 /* BaekJoon.swift */,
 			);
 			path = BaekJoon;
 			sourceTree = "<group>";
@@ -91,11 +82,7 @@
 		FAE46EB825AE9AB0006A5BF6 /* LeetCode */ = {
 			isa = PBXGroup;
 			children = (
-				FAE46ECA25AE9C63006A5BF6 /* Leet1.swift */,
-				FAE46ECF25AEB918006A5BF6 /* Leet7.swift */,
-				FAE46ED225AEC047006A5BF6 /* Leet83.swift */,
-				FAE46ED825AED727006A5BF6 /* Leet9.swift */,
-				FAE46EDB25AEE5D5006A5BF6 /* Leet14.swift */,
+				FAE46ECA25AE9C63006A5BF6 /* Leet.swift */,
 			);
 			path = LeetCode;
 			sourceTree = "<group>";
@@ -158,16 +145,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				FAE46EB025AE99E1006A5BF6 /* main.swift in Sources */,
-				FAE46ED025AEB918006A5BF6 /* Leet7.swift in Sources */,
-				FAE46ED325AEC047006A5BF6 /* Leet83.swift in Sources */,
-				FAE46ED925AED727006A5BF6 /* Leet9.swift in Sources */,
-				FAE46EC825AE9C06006A5BF6 /* BaekJoon10757.swift in Sources */,
-				FAE46EBF25AE9BC7006A5BF6 /* BaekJoon1009.swift in Sources */,
-				FAE46ECB25AE9C63006A5BF6 /* Leet1.swift in Sources */,
-				FAE46EDC25AEE5D5006A5BF6 /* Leet14.swift in Sources */,
-				FAE46EC525AE9BF7006A5BF6 /* BaekJoon1076.swift in Sources */,
-				FAE46EC225AE9BD4006A5BF6 /* BaekJoon1052.swift in Sources */,
-				FAE46EBB25AE9B8E006A5BF6 /* BaekJoon1000.swift in Sources */,
+				FAE46ECB25AE9C63006A5BF6 /* Leet.swift in Sources */,
+				FAE46EBB25AE9B8E006A5BF6 /* BaekJoon.swift in Sources */,
+				FA9F0A3325B7F51F00E9AB85 /* programmers.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
