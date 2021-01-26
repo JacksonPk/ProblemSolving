@@ -1,8 +1,10 @@
 //https://gist.github.com/JacksonPk/8b394c4ebb5337b55becd99d4b3025dc
 //현재까지 푼 문제
 //
+//
 //1000 1009 1052 1076 2839 10757 11399 11047
 
+//1931 
 //enum coins : Int {
 //    case fiveH = 500
 //    case oneH = 100
