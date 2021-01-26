@@ -7,21 +7,21 @@
 
 import Foundation
 
+maxMeetingCount()
+//for index in 0 ..< ra.count{
+//    var fa = [(Int,Int)]()
+//    var rra = ra
+//    print(rra[index])
+//    fa.insert(rra[index], at: 0)
+//    rra.remove(at: index)
+//
+//    print(fa)
+//    print(rra)
+//}
 
-//print(solution([[0,0,0,0,0],[0,0,1,0,3],[0,2,5,0,1],[4,2,4,4,2],[3,5,1,3,1]], [1,5,3,5,1,2,1,4]))
-print(solution([[0,2,0],[1,2,0],[2,2,1]], [1,2,2,2,1,3]))
-
-
-
-//move 값이 1
-//array[0][1], array[1][1], array[2][1], array[3][1], array[4][1]
-/*
- 1 2
- 2 22
- 2 221
- 2 221
- 1 221
- 3 2211
- 
- */
-
+//
+//print(ra[0])
+//fa.insert(ra[1], at: 0)
+//ra.remove(at: 1)
+//fa.insert(ra[1], at: 1)
+//print(fa)
