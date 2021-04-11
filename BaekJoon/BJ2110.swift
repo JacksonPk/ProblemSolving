@@ -1,44 +1,31 @@
-//https://www.acmicpc.net/problem/2110
-
-import Foundation
-
-let input = readLine()!.split(separator: " ").compactMap{Int(String($0))}
-let n = input[0]
-let c = input[1]
-var cables = [Int]()
-for _ in 0..<n {
-    cables.append(Int(readLine()!)!)
+let N_C = readLine()!.split(separator: " ").compactMap{ Int(String($0)) }
+var homes = [Int]()
+for _ in 0..<N_C[0] {
+    homes.append(Int(readLine()!)!)
 }
-cables = cables.sorted()
+homes.sort()
 
-//print(n,c,cables)
-
-func getCount(_ mid : Int) -> Int {
-    var start = cables[0]
-    var count = 1
-    for idx in 1..<n {
-        if (cables[idx] - start) >= mid {
-            start = cables[idx]
-            count += 1
-        }
-    }
-    
-    return count
-}
-func binarySearch() -> Int{
-    var left = 1
-    var right = cables.last! - cables.first!
+//1 2 4 8 9
+func binarySearch() -> Int {
+    var left = 0 //
+    var right = homes[homes.count - 1]
     var ans = 0
     
-    while left<=right {
+    while left <= right {
+        var cnt = 1
         let mid = (left + right) / 2
-        
-        let result = getCount(mid)
-        if c <= result {
-            ans = result
+        var ex = homes[0]
+        for idx in 1..<homes.count {
+            if homes[idx] - ex >= mid {
+                ex = homes[idx]
+                cnt += 1
+            }
+        }
+        if cnt >= N_C[1] { //조건에 충족하거나 더 크면.
+            ans = mid
             left = mid + 1
-        }else{
-            right = right - 1
+        } else {
+            right = mid - 1
         }
         
     }
@@ -47,3 +34,6 @@ func binarySearch() -> Int{
 }
 
 print(binarySearch())
+
+//1 2 4 8 9
+
