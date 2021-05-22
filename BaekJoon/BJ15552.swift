@@ -1,84 +1,60 @@
-//import Foundation
 //https://www.acmicpc.net/problem/15552
+import Foundation
 
-/* MARK:NSMuatableString 을 이용한 방법 시간초과 */
-/*var results : NSMutableString = ""
- var numbers = [Int]()
- let count = Int(readLine()!)!
- for i in 0..<count{
- results.append(String(readLine()!.split(separator: " ").compactMap{Int($0)}.reduce(0){
- $0 + $1
- }))
- if i != count - 1 {
- results.append("\n")
- }
- }
- print(results)
- */
-
-/* MARK: 배열을 이용한 방법 */
-//var resultArr : [Int] = Array(repeating: 0, count: 1000000)
-//
-//for i in 0 ..< Int(readLine()!)! {
-//    resultArr[i] = readLine()!.split(separator: " ").compactMap{Int($0)}.reduce(0){
-//        $0 + $1
-//    }
-//}
-////print(resultArr)
-//for i in 0..<resultArr.count {
-//    if resultArr[i] != 0 {
-//        print(resultArr[i])
-//    }else{
-//        break
-//    }
-//}
-
-//
-// MARK:그때마다 이용한 방법 ->
-//2 ... 2000
-//
-//for _ in 0..<Int(readLine()!)!{
-//    print(readLine()!.split(separator: " ").compactMap{Int($0)}.reduce(0){
-//        $0 + $1
-//    })
-//}
-
-// MARK:Int형 ->UIN16,32를 사용
-//import Foundation
-//for _ in 0..<UInt32(readLine()!)!{
-//    print(readLine()!.split(separator: " ").compactMap{UInt16($0)}.reduce(0){
-//        $0 + $1
-//    })
-//}
-
-
-// MARK:NSString의 intvalue사용
-//import Foundation
-//var str = ""
-////(a[0] as NSString).intValue
-//for _ in 0..<UInt32(readLine()!)!{
-//    let a = readLine()!.split(separator: " " )
-////    print((a[0] as NSString).intValue + (a[1] as NSString).intValue)
-//    str.write(String((a[0] as NSString).intValue + (a[1] as NSString).intValue)+"\n")
-////    free(a)
-//}
-
-// MARK:so on...
-var str = ""
-//(a[0] as NSString).intValue
-for _ in 0..<UInt32(readLine()!)!{
+// 라이노님의 FileIO
+final class FileIO {
+    private var buffer:[UInt8]
+    private var index: Int
     
-//    print((a[0] as NSString).intValue + (a[1] as NSString).intValue)
-    str.write(String(readLine()!.split(separator: " ").compactMap{Int16($0)}.reduce(0,+))+"\n")
-//    free(a)
+    init(fileHandle: FileHandle = FileHandle.standardInput) {
+        buffer = Array(fileHandle.readDataToEndOfFile())+[UInt8(0)] // 인덱스 범위 넘어가는 것 방지
+        index = 0
+    }
+    
+    @inline(__always) private func read() -> UInt8 {
+        defer { index += 1 }
+        
+        return buffer.withUnsafeBufferPointer { $0[index] }
+    }
+    
+    @inline(__always) func readInt() -> Int {
+        var sum = 0
+        var now = read()
+        var isPositive = true
+        
+        while now == 10
+                || now == 32 { now = read() } // 공백과 줄바꿈 무시
+        if now == 45{ isPositive.toggle(); now = read() } // 음수 처리
+        while now >= 48, now <= 57 {
+            sum = sum * 10 + Int(now-48)
+            now = read()
+        }
+        
+        return sum * (isPositive ? 1:-1)
+    }
+    
+    @inline(__always) func readString() -> String {
+        var str = ""
+        var now = read()
+        
+        while now == 10
+                || now == 32 { now = read() } // 공백과 줄바꿈 무시
+        
+        while now != 10
+                && now != 32 && now != 0 {
+            str += String(bytes: [now], encoding: .ascii)!
+            now = read()
+        }
+        
+        return str
+    }
 }
 
-//print(UInt.max,UInt64.max, UInt32.max ,UInt16.max, UInt8.min)
-print(str.description)
 
-//5
-//1 1
-//12 34
-//5 500
-//40 60
-//1000 1000
+let file = FileIO()
+for i in 0..<file.readInt() {
+    print(file.readInt() + file.readInt())
+}
+
+
+
