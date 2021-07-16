@@ -15,7 +15,6 @@ func solution(_ n:Int, _ k:Int, _ cmd:[String]) -> String {
     for idx in 0..<n {
         initVar.append(idx)
     }
-    var updateVar = initVar
     
     for val in cmd {
         
@@ -27,39 +26,49 @@ func solution(_ n:Int, _ k:Int, _ cmd:[String]) -> String {
             cur += Int(input[1])!
         case "C":
             
-            let val = updateVar.remove(at: cur)
+            let val = initVar.remove(at: cur)
             storedIdx.insert(cur, at: 0)
             storedVar.insert(val, at: 0)
-            if cur == updateVar.count { //마지막 행이라면 커서idx 1 감소
+            if cur == initVar.count { //마지막 행이라면 커서idx 1 감소
                 cur -= 1
             }
             
         case "Z":
             //저장되 있던 해당값과 idx 복귀
 
+            print("test ",initVar[cur])
             let idx = storedIdx.removeFirst()
             let val = storedVar.removeFirst()
-            
-            updateVar.insert(val, at: idx)
+            initVar.insert(val, at: idx)
             if idx <= cur { //저장된 값의 idx가 커서보다 낮은값이면 커서idx 1 증가
                 cur += 1
             }
+            
         default:
             print("not")
         }
+        print("stored idx",storedIdx)
+        print("stored idx",storedIdx)
     }
     
-    for idx in storedIdx { //비교를 위해 나머지 스택 넣어주기
-        updateVar.insert(-1, at: idx)
-    }
-    
-    for idx in 0..<initVar.count {
-        if initVar[idx] == updateVar[idx] {
+    var expectedNum = 0
+    initVar.forEach { value in
+        if value == expectedNum {
             result += "O"
-        }else{
-            result += "X"
+            expectedNum = value+1
+        }else {
+            for _ in 0..<(value-expectedNum) {
+                result += "X"
+            }
+            result += "O"
+            expectedNum = value+1
         }
     }
+    
+    for _ in 0..<(n-expectedNum) {
+        result += "X"
+    }
+    
     return result
 }
 
