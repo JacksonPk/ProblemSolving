@@ -3,12 +3,13 @@ let input = readLine()!.split(separator: " ").compactMap{Int(String($0))}
 let M = input[0] //col
 let N = input[1] //row
 let H = input[2] //height
-let dR = [-1,1,0,0]
-let dC = [0,0,-1,1]
-let dH = [-1,1]
+let dR = [-1,1,0,0,0,0]
+let dC = [0,0,-1,1,0,0]
+let dH = [0,0,0,0,-1,1]
 var cube = Array(repeating: Array(repeating: Array(repeating: 0, count: M), count: N), count: H)
 var queue: [[Int]] = [] //익은 토마토들의 위치의 배열 [[H,N,M]]
 
+//입력
 for h in 0..<H {
     for r in 0..<N {
         let input = readLine()!.split(separator: " ").compactMap{Int(String($0))}
@@ -42,19 +43,13 @@ func BFS(queue:[[Int]]) -> Int {
             let cH = element[0]
             let cR = element[1]
             let cC = element[2]
-            for d in 0..<4 {
+            for d in 0..<6 {
                 let nR = cR + dR[d]
                 let nC = cC + dC[d]
-                if (nR >= 0 && nC >= 0 && nR < N && nC < M) && cube[cH][nR][nC] == 0 {
-                    cube[cH][nR][nC] = 1
-                    todayQueue.append([cH,nR,nC])
-                }
-            }
-            for d in 0..<2 {
                 let nH = cH + dH[d]
-                if (nH >= 0 && nH < H) && cube[nH][cR][cC] == 0 {
-                    cube[nH][cR][cC] = 1
-                    todayQueue.append([nH,cR,cC])
+                if (nR >= 0 && nC >= 0 && nH >= 0 && nR < N && nC < M && nH < H) && cube[nH][nR][nC] == 0 {
+                    cube[nH][nR][nC] = 1
+                    todayQueue.append([nH,nR,nC])
                 }
             }
         }
