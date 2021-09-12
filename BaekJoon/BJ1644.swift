@@ -1,48 +1,53 @@
-//https://www.acmicpc.net/problem/15954
+////https://www.acmicpc.net/problem/1644
+let N = Int(readLine()!)!
 
-// 부르트 포스 개념 적용해야함 :  k가 3이 최소일뿐 n까지 모두 봐야한다.
-import Foundation
-
-var min = -1.0
-var arr : [Int] = []
-
-
-func stdev(elements : [Int]) -> Double {
-    let avg : Double = Double(elements.reduce(0, +))/Double(elements.count)
-    var sumOfDeviation : Double = 0
-    var varience : Double = 0
+func getPrimeNums(N: Int) -> [Int] { //소수 구하기
+    var isPrimeNum = Array(repeating: true, count: N+1)
+    var arr = [Int]()
+    var count = 2
     
-    for element in elements {
-        sumOfDeviation += pow(Double((Double(element) - avg)), 2)
-    }
-    varience = sumOfDeviation / Double(elements.count)
-    
-    return varience.squareRoot()
-}
-
-
-let inputNandK = readLine()!.split(separator: " ").compactMap{Int($0)}
-let n = inputNandK[0]
-let k = inputNandK[1]
-let inputArr = readLine()!.split(separator: " ").compactMap{Int($0)}
-
-for i in 0...n-k {
-    
-    var resultVal = 0.0
-    arr = []
-    
-    for j in i..<n {
-        arr.append(inputArr[j])
-        if arr.count >= k {
-            
-            resultVal = stdev(elements: arr)
-            if min == -1 || min > resultVal {
-                
-                min = resultVal
-            }
+    for i in 2..<isPrimeNum.count where isPrimeNum[i] {
+        let prime = i
+        count = 2
+        while prime * count <= N {
+            isPrimeNum[prime*count] = false
+            count += 1
         }
     }
     
+    for i in 2...N where isPrimeNum[i] {
+        arr.append(i)
+    }
+    
+    return arr
 }
 
-print(min)
+func twoPointer (arr: [Int], N: Int) -> Int {
+    var left = 0
+    var right = 0
+    var count = 0
+    var sum = 0
+    
+    while left <= right && right < arr.count {
+        sum += arr[right]
+        
+        if sum == N {
+            count += 1
+            sum -= arr[left]
+            left += 1
+            right += 1
+        } else if sum < N {
+            right += 1
+        } else {
+            sum = sum - (arr[left] + arr[right])
+            left += 1
+        }
+    }
+    return count
+}
+
+if N == 1 {
+    print(0)
+} else {
+    print(twoPointer(arr: getPrimeNums(N: N), N: N))
+}
