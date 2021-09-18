@@ -3,75 +3,78 @@
 
 let input = readLine()!.split(separator: " ").compactMap{Int(String($0))}
 let (N,K) = (input[0],input[1])
-var words: [UInt32] = []
+var words: [Int] = []
 var maxCount = 0
-var isUsed: [Bool] = []
-var allShiftNumsSet:Set<UInt32> = []
-var allShiftNumsArr:[UInt32] = []
-var selectedShiftNumsArr:[UInt32] = []
+var totalBits = 0 //입력받은 모든 bit를 저장
 
 //Input
 for _ in 0..<N {
     let word = readLine()!
-    var givenBit:UInt32 = 0
-
+    var givenBit = 0
+    
     for letter in word {
         let shiftNum = letter.asciiValue! - Character("a").asciiValue!
-        switch shiftNum {
-        case 0,2,8,13,19: //a,c,i,n,t 제외
-            break
-        default:
-            allShiftNumsSet.insert(UInt32(shiftNum))
-            givenBit |= 1<<(shiftNum)
-        }
+        givenBit |= 1<<(shiftNum)
+        totalBits |= 1<<(shiftNum)
     }
-
-    if howManyOneBits(bit: givenBit) <= (K-5) {
-        words.append(givenBit) //해당 단어의 UInt32 bit값을 넣는다.
-    }
+    words.append(givenBit) //해당 단어의 UInt32 bit값을 넣는다.
 }
 
-func howManyOneBits(bit: UInt32) -> Int { //해당 비트에 1비트가 총 몇개인지 구하는 함수
-    var shiftbit = 0
-    var compareBit:UInt32 = 0
+func getTotalChildBits(bits: Int) -> Int { //해당 부모비트가 포함하는 자식비트들의 수
     var count = 0
-
-    while bit > compareBit {
-        compareBit = 1 << shiftbit
-        count = (compareBit & bit) > 0 ? count + 1 : count
-        shiftbit += 1
-    }
-    return count
-}
-
-func getTotalChildBits(shiftArr: [UInt32]) -> Int { //해당 부모비트가 포함하는 자식비트들의 수
-    var count = 0
-    var bits:UInt32 = 0
-    for shift in shiftArr {
-        bits |= 1 << shift
-    }
+    
     for word in words where bits == (word | bits) {
         count += 1
     }
     return count
 }
 
-func backTracking(idx: Int) {
-    if selectedShiftNumsArr.count == (K-5) {
-        maxCount = max(maxCount, getTotalChildBits(shiftArr: selectedShiftNumsArr))
-        return
+func getNumofOneBits(bits: Int) -> Int {
+    var count = 0
+    var compareBits: Int = 0
+    var shift = 0
+    while compareBits < bits {
+        compareBits = 1<<shift
+        count = (compareBits & bits) > 0 ? count + 1 : count
+        shift += 1
     }
-
-    for i in idx..<allShiftNumsArr.count where !isUsed[i] {
-        isUsed[i] = true
-        selectedShiftNumsArr.append(allShiftNumsArr[i])
-        backTracking(idx: idx+1)
-        isUsed[i] = false
-        selectedShiftNumsArr.removeLast()
-    }
+    return count
 }
 
-allShiftNumsArr = Array(allShiftNumsSet)
-isUsed = Array(repeating: false, count: allShiftNumsArr.count)
-backTracking(idx: 0)
-print(maxCount)
+func recursion(bits: Int, count: Int, shift: Int ) -> Int {
+    var maxCount = 0
+    var compareBits: Int = 0
+    var nshift = shift
+    
+    if count == K {
+        return getTotalChildBits(bits: bits)
+    }
+    
+    while compareBits < bits {
+        compareBits = 1<<nshift
+        switch compareBits & bits {
+        case
+            0,
+            1<<(Int(Character("a").asciiValue!)-97),
+            1<<(Int(Character("c").asciiValue!)-97),
+            1<<(Int(Character("i").asciiValue!)-97),
+            1<<(Int(Character("n").asciiValue!)-97),
+            1<<(Int(Character("t").asciiValue!)-97):
+            break
+        default:
+            maxCount = max(maxCount,recursion(bits: bits & ~compareBits, count: count-1, shift: nshift))
+        }
+        nshift+=1
+    }
+    return maxCount
+}
+if K < 5 {
+    print(0)
+} else {
+    let totalOneBits = getNumofOneBits(bits: totalBits)
+    if totalOneBits <= K { //입력으로 받은 1비트의 갯수보다 선택할 수가 많으면 N개 전부 고를 수 있다.
+        print(N)
+    } else {
+        print(recursion(bits: totalBits, count: totalOneBits, shift: 0))
+    }
+}
