@@ -1,127 +1,72 @@
 //https://www.acmicpc.net/problem/18258
-
 import Foundation
+//원래는 Class 처리가 없으셨지만 내가 임시로 구현했다.
+class FileIO {
+    @inline(__always) private var buffer: [UInt8] = Array(FileHandle.standardInput.readDataToEndOfFile()) + [0], byteIdx = 0
 
+    @inline(__always) private func readByte() -> UInt8 {
+        defer { byteIdx += 1 }
+        return buffer.withUnsafeBufferPointer { $0[byteIdx] }
+    }
 
-class Node  {
-    private var value : Int
-    private var next : Node?
-    
-    init(_ val : Int, _ next : Node?) {
-        self.value = val
-        self.next = next
+    @inline(__always) func readInt() -> Int {
+        var number = 0, byte = readByte(), isNegative = false
+        while byte == 10 || byte == 32 { byte = readByte() }
+        if byte == 45 { byte = readByte(); isNegative = true }
+        while 48...57 ~= byte { number = number * 10 + Int(byte - 48); byte = readByte() }
+        return number * (isNegative ? -1 : 1)
     }
-    
-    func getValue() -> Int {
-        return self.value
+
+    @inline(__always) func readStirngSum() -> Int {
+        var byte = readByte()
+        while byte == 10 || byte == 32 { byte = readByte() }
+        var sum = Int(byte)
+        while byte != 10 && byte != 32 && byte != 0 { byte = readByte(); sum += Int(byte) }
+        return sum - Int(byte)
     }
-    
-    func setNextNode(_ newNode : Node){
-        self.next = newNode
-    }
-    
-    func getNextNode() -> Node? {
-        return self.next
+
+    @inline(__always) private func write(_ output: String) {
+        FileHandle.standardOutput.write(output.data(using: .utf8)!)
     }
 }
+let fileIO = FileIO()
+var arrayQueue: [Int] = []
+var curIdx = 0
+var result = ""
+for _ in 0 ..< fileIO.readInt() {
 
-class LinkedQueue {
-    
-    private var frontNode : Node
-    private var backNode : Node
-    private var length : Int
-    
-    private var fileRead : String = "" //BOJ 제출용
-    init(){
-        frontNode = Node.init(-1, nil)
-        backNode = frontNode
-        length = 0
-        
-    }
-    
-    func push(_ num : Int) {
-        let newNode = Node(num, nil)
-        
-        if length == 0 {
-            frontNode = newNode
-            backNode = frontNode
+    switch fileIO.readStirngSum() {
+    case 448: //push
+        arrayQueue.append(fileIO.readInt())
+    case 335: //pop
+        if (arrayQueue.count - curIdx) == 0 {
+            result.write("-1\n")
         }else {
-            backNode.setNextNode(newNode)
-            backNode = backNode.getNextNode()!
+            result.write(String(arrayQueue[curIdx])+"\n")
+            curIdx += 1
         }
-        length += 1
-    }
-    func pop(){
-        if length == 0 {
-            //            print("-1")
-            fileRead.write("-1\n")
+    case 443: //size
+        result.write(String(arrayQueue.count - curIdx)+"\n")
+    case 559: //empty
+        if (arrayQueue.count - curIdx) == 0 {
+            result.write("1\n")
         }else{
-            //            print(frontNode.getValue())
-            fileRead.write(String(frontNode.getValue())+"\n")
-            frontNode = frontNode.getNextNode() ?? backNode
-            length -= 1
+            result.write("0\n")
         }
-    }
-    func size(){
-        //        print(length)
-        fileRead.write(String(length)+"\n")
-    }
-    func empty(){
-        if length == 0 {
-            //            print("1")
-            fileRead.write("1\n")
-        }else{
-            //            print("0")
-            fileRead.write("0\n")
+    case 553: //front
+        if (arrayQueue.count - curIdx) == 0 {
+            result.write("-1\n")
+        }else {
+            result.write(String(arrayQueue[curIdx])+"\n")
         }
-    }
-    func front(){
-        if length == 0 {
-            //            print("-1")
-            fileRead.write("-1\n")
-        }else{
-            //            print(frontNode.getValue())
-            fileRead.write(String(frontNode.getValue())+"\n")
+    case 401: //back
+        if (arrayQueue.count - curIdx) == 0 {
+            result.write("-1\n")
+        }else {
+            result.write(String(arrayQueue.last!)+"\n")
         }
-    }
-    func back(){
-        if length == 0 {
-            //            print("-1")
-            fileRead.write("-1\n")
-        }else{
-            //            print(backNode.getValue())
-            fileRead.write(String(backNode.getValue())+"\n")
-        }
-    }
-    
-    func printResult() {
-        print(fileRead)
-    }
-}
-
-let q = LinkedQueue()
-
-for _ in 0 ..< Int(readLine()!)! {
-    let command = readLine()!.split(separator: " ")
-    
-    switch command[0] {
-    case "push" :
-        q.push(Int(command[1])!)
-    case "pop" :
-        q.pop()
-    case "size" :
-        q.size()
-    case "empty" :
-        q.empty()
-    case "front" :
-        q.front()
-    case "back" :
-        q.back()
-        
     default: break
     }
-    
 }
-q.printResult()
-
+print(result)
 
