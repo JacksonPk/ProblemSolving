@@ -63,3 +63,19 @@ list.add(1);
 list.get(0); //get(index) return 아이템. list[4] <- 이런 형태 불가
 list.toArray(); //ArrayList to Array, string에서만 사용. int형 불가.
 ```
+
+### 스택vs큐
+```java
+//Stack
+Stack<int> stack = new Stack<>();
+stack.push(1);
+stack.remove(1);
+stack.peek(); //스택 top
+
+//Queue
+Queue<int> queue = new LinkedList<>();
+queue.offer(1);
+queue.remove(1);
+queue.peek(); //큐 left
+queue.poll(); //큐 right
+```
