@@ -38,6 +38,10 @@ import java.lang.Math;
 int[] list = {}; //초기화
 int[] list = {1, 2, 3}; //초기화 및 값 선언
 int[] list = new int[3]; //초기화 및 배열크기선언
+
+//선언 및 초기화
+boolean[] isUsed = new boolean[10];
+Arrays.fill(isUsed, Boolean.FALSE);
 ```
 
 ### 배열 sort시
