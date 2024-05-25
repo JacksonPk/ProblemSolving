@@ -79,3 +79,9 @@ queue.remove(1);
 queue.peek(); //큐 left
 queue.poll(); //큐 right
 ```
+
+
+### 자료형 변환
+``` java
+"" + number; //tricky way
+```
